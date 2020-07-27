@@ -141,4 +141,17 @@ public class Recipe {
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
     }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "description='" + description + '\'' +
+                ", prepTime=" + prepTime +
+                ", cookTime=" + cookTime +
+                ", servings=" + servings +
+                ", source='" + source + '\'' +
+                ", url='" + url + '\'' +
+                ", ingredients=" + ingredients +
+                '}';
+    }
 }
