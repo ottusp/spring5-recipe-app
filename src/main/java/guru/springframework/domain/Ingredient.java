@@ -3,21 +3,39 @@ package guru.springframework.domain;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+/**
+ * Created by jt on 6/13/17.
+ */
 @Entity
 public class Ingredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String description;
     private BigDecimal amount;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    private UnitOfMeasure uom;
 
     @ManyToOne
     private Recipe recipe;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private UnitOfMeasure unitOfMeasure;
+    public Ingredient() {
+    }
+
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom) {
+        this.description = description;
+        this.amount = amount;
+        this.uom = uom;
+    }
+
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom, Recipe recipe) {
+        this.description = description;
+        this.amount = amount;
+        this.uom = uom;
+        this.recipe = recipe;
+    }
 
     public Long getId() {
         return id;
@@ -51,20 +69,11 @@ public class Ingredient {
         this.recipe = recipe;
     }
 
-    public UnitOfMeasure getUnitOfMeasure() {
-        return unitOfMeasure;
+    public UnitOfMeasure getUom() {
+        return uom;
     }
 
-    public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
-        this.unitOfMeasure = unitOfMeasure;
-    }
-
-    @Override
-    public String toString() {
-        return "Ingredient{" +
-                "description='" + description + '\'' +
-                ", amount=" + amount +
-                ", unitOfMeasure=" + unitOfMeasure +
-                '}';
+    public void setUom(UnitOfMeasure uom) {
+        this.uom = uom;
     }
 }

@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Recipe Project</title>
+    <meta charset="UTF-8"/>
+    <title>Recipe Home</title>
 </head>
 <body>
-<div th:each="recipe:${recipes}">
-    <p th:text="'Description: ' + ${recipe.description}">Description</p>
-    <p th:text="'Prep time: ' + ${recipe.prepTime}">Prep time</p>
-    <p th:text="'Servings: ' + ${recipe.servings}">Servings</p>
-    <p th:text="'Cook time: ' + ${recipe.cookTime}">Cook time</p>
-    <p th:text="'Source: ' + ${recipe.source}">Source</p>
-    <link th:href="${recipe.url}" th:text="${recipe.url}"><link>
-    <p th:text="'Ingredients: '">Ingredients</p>
-    <div th:each="ingredient:${recipe.ingredients}">
-        <p th:text="${ingredient.description} + ': ' + ${ingredient.amount} + ' ' +
-            ${ingredient.unitOfMeasure.description}">Description</p>
-        <p th:text="${ingredient.amount}">Amount</p>
-    </div>
-</div>
+<h1>My Recipes!</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+    </tr>
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="${recipe.id}">123</td>
+        <td th:text="${recipe.description}">Tasty Goodnees</td>
+    </tr>
+</table>
 </body>
 </html>
