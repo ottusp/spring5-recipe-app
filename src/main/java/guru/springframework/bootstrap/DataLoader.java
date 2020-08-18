@@ -3,9 +3,10 @@ package guru.springframework.bootstrap;
 import guru.springframework.domain.Ingredient;
 import guru.springframework.domain.Recipe;
 import guru.springframework.domain.UnitOfMeasure;
-import guru.springframework.repository.IngredientRepository;
-import guru.springframework.repository.RecipeRepository;
-import guru.springframework.repository.UnitOfMeasureRepository;
+import guru.springframework.repositories.IngredientRepository;
+import guru.springframework.repositories.RecipeRepository;
+import guru.springframework.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
+@Slf4j
 public class DataLoader implements CommandLineRunner {
 
     private final IngredientRepository ingredientRepository;
@@ -44,8 +46,10 @@ public class DataLoader implements CommandLineRunner {
         teaSpoon.setDescription("TeaSpoon");
         uomRepository.save(teaSpoon);
 
+        log.debug("Tea spoon saved");
+
         Ingredient salt = new Ingredient();
-        salt.setUnitOfMeasure(teaSpoon);
+        salt.setUom(teaSpoon);
         salt.setRecipe(guacamole);
         salt.setAmount(BigDecimal.valueOf(0.25));
         salt.setDescription("Salt");
@@ -54,11 +58,13 @@ public class DataLoader implements CommandLineRunner {
         unit.setDescription("Unit");
         uomRepository.save(unit);
 
+        log.debug("Unit saved");
+
         Ingredient avocado = new Ingredient();
         avocado.setRecipe(guacamole);
         avocado.setDescription("Avocado");
         avocado.setAmount(BigDecimal.valueOf(2L));
-        avocado.setUnitOfMeasure(unit);
+        avocado.setUom(unit);
 
         Set<Ingredient> ingredients = new HashSet<>();
         ingredients.add(avocado);
@@ -68,6 +74,10 @@ public class DataLoader implements CommandLineRunner {
         recipeRepository.save(guacamole);
         ingredientRepository.save(avocado);
         ingredientRepository.save(salt);
+
+        log.debug("Recipe saved");
+        log.debug("Ingredient saved");
+        log.debug("Salt saved");
 
         System.out.println(guacamole);
 
