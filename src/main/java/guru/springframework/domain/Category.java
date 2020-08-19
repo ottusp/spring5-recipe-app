@@ -1,8 +1,6 @@
 package guru.springframework.domain;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -17,6 +15,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
+
+    public Category(){}
 
     @ManyToMany(mappedBy = "categories")
     private Set<Recipe> recipes;
