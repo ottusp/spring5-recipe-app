@@ -28,6 +28,6 @@ public class UnitOfMeasureRepositoryIT {
 
         Optional<UnitOfMeasure> uomOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
 
-        assertEquals("Teaspoonnnnn", uomOptional.get().getDescription());
+        assertEquals("Teaspoon", uomOptional.get().getDescription());
     }
 }
