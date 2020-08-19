@@ -10,4 +10,5 @@ jobs:
       - image: circleci/maven:3.6.3
 
     steps:
-      - maven/test
+      - checkout
+      - run: mvn test
