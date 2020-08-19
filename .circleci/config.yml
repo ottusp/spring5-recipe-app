@@ -6,4 +6,9 @@ orbs:
   workflows:
     maven_test:
       jobs:
-        - maven/test
+        build:
+          docker:
+            - image: circleci/maven:3.6.3
+
+          steps:
+            - maven/test
